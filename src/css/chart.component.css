@@ -1,0 +1,10 @@
+.chart {
+  margin: 0 auto;
+  width: calc(420px - 2rem);
+}
+
+@media only screen and (max-width: 500px) {
+  .chart {
+    width: calc(300px - 2rem);
+  }
+}/*# sourceMappingURL=chart.component.css.map */

@@ -1,27 +1,57 @@
-# MasterFrontEnd
+# Final Project - Master Front End by Brian Moretti
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.5.
+Welcome to my Final Project of the Front-End Master by Star2Impact University
 
-## Development server
+## :technologist: Try now
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Can't wait to try my application. Go here, [Flights Footprint](https://flights-footprint.web.app/footprint) , and have fun.
 
-## Code scaffolding
+## Flights Footprint - Application
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Flights Footprint app, is useful to calculate and have an estimation of the footprint of a flight from/to different airports setting the number of passengers and the cabin class. Is build using the API available at [Goclimate](https://api.goclimate.com/docs) and a cloned airports database [airports.json](https://gist.github.com/tdreyno/4278655)
 
-## Build
+### :computer: Main functionality
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Form:** The application has a form with 2 Input boxes and 2 Dropdown boxes.
 
-## Running unit tests
+  - The Input boxes are used to select the departure airport and the landing airport.
+    - As soon as you starting typing, below the boxes, will appear a window with a list of airports filtered by the keyword typed.
+    - The user can navigate throught the list with the mouse or the keyboard arrow
+  - The Dropdown boxes are used to select the number of passengers (1 to 10) and the cabin class of the flight (Economy, Premium, Business, First)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Result:** Once submitted the form will appear an animations of a lasts of 3sec. and then a results section will come into the view with the following data:
+  - The code of the airports (departure / landing)
+  - The amount of CO2e, express in tons, emitted, based on the flight setting, for a single passenger and for the total passengers of the flights.
+    - Of course, if has been setting 1 as the n. of passengers the value will be the same
+  - A chart with the CO2e emitted
+- **Chart:** The chart give the user the possibility to compare up to 6 different flights footprint routes setted
+  - The X axis shows the number of flights compared
+  - The Y axis shows the amount of CO2e per single passenger
+  - The Y1 axis shows the amount of CO2e per total passengers
 
-## Running end-to-end tests
+### :hammer: How is build:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The applications is build using:
 
-## Further help
+- Angular
+- PrimeNG (Icon NG)
+- SCSS
+- Chart.JS
+- CircleType.JS
+- Firebase (Hosting)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The application has the following features:
+
+- Test Code-Coverage greater than 80%
+- 2 NGModules: 'Footprint' and 'App'. Footprint Module is configured to be Lazy-Load. You can see the process spying the Devs tools of your Browser.
+
+## :gear: Config the application on locale
+
+Copy the repository from my Github  
+Run `npm install` to install all the modules needed to use the application  
+Run `ng serve -o` or `ng serve open` to launch the app locally and open immediately `http://localhost:4200/`.  
+Run `ng test` to execute the unit tests via Karma
+
+## :incoming_envelope: Contact me
+
+If you find some bugs to fix or simply you want to send me a message please write me at [brianmoretti2512@gmail.com](mailto:brianmoretti2512@gmail.com)

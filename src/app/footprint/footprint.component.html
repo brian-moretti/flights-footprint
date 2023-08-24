@@ -1,0 +1,208 @@
+<section class="intro">
+  <app-header></app-header>
+  <video id="clouds-video" loop="true">
+    <source type="video/mp4" src="../../assets/videos/footprint(3).mp4" />
+  </video>
+  <div class="title">
+    <h2>"Choose to be a responsible and environmentally conscious traveler"</h2>
+    <p>
+      Get a free flight footprint calculation and see the comparison up to 6
+      different flight routes
+    </p>
+  </div>
+  <a [routerLink]="['']" fragment="footprint">
+    <p-button
+      icon="pi pi-arrow-down"
+      styleClass="p-button-rounded p-button-lg"
+    ></p-button>
+  </a>
+</section>
+
+<section class="footprint" id="footprint">
+  <div>
+    <form
+      [formGroup]="footprintForm"
+      (ngSubmit)="footprintSubmit(footprintForm)"
+    >
+      <h3>Calculate the footprint</h3>
+      <label for="departure">From:</label>
+      <span class="p-input-icon-right">
+        <i
+          *ngIf="departureField.value"
+          class="pi pi-times"
+          (click)="handleInputSelection('', 'departure', 'reset')"
+        ></i>
+        <input
+          type="text"
+          formControlName="from"
+          id="departure"
+          autocomplete="off"
+          #departureField
+          pInputText
+          pKeyFilter="alpha"
+          name="departure"
+          placeholder="Choose the departure airport..."
+          (input)="filterAirports(departureField.value, 'departure')"
+          [ngClass]="
+            departure?.touched && departure?.invalid ? 'ng-dirty' : null
+          "
+        />
+        <small
+          *ngIf="departure?.touched && departure?.invalid"
+          id="username-help"
+          class="p-error"
+          >An airport selection is mandatory</small
+        >
+      </span>
+
+      <div
+        [ngClass]="
+          departureField.value &&
+          filteredAirports.length > 0 &&
+          activeFilter === 'departure'
+            ? 'airports-selection'
+            : 'hidden'
+        "
+      >
+        <ng-container *ngFor="let airport of filteredAirports; let i = index">
+          <button
+            type="button"
+            [ngStyle]="{ display: 'block' }"
+            #departureAir
+            (click)="
+              handleInputSelection(
+                departureAir.innerText,
+                'departure',
+                'confirm'
+              )
+            "
+            (focus)="
+              handleInputSelection(
+                departureAir.innerText,
+                'departure',
+                'update'
+              )
+            "
+            [tabIndex]="selectAirport === i ? 0 : -1"
+          >
+            {{ airport.code }} - {{ airport.name }} | {{ airport.city }}
+          </button>
+        </ng-container>
+      </div>
+
+      <label for="arrival">To:</label>
+      <span class="p-input-icon-right">
+        <i
+          *ngIf="arrivalField.value"
+          class="pi pi-times"
+          (click)="handleInputSelection('', 'arrival', 'reset')"
+        ></i>
+
+        <input
+          type="text"
+          formControlName="to"
+          id="arrival"
+          name="arrival"
+          pInputText
+          pKeyFilter="alpha"
+          #arrivalField
+          autocomplete="off"
+          placeholder="Choose the arrival airport..."
+          (input)="filterAirports(arrivalField.value, 'arrival')"
+          [ngClass]="arrival?.touched && arrival?.invalid ? 'ng-dirty' : null"
+        />
+
+        <small
+          *ngIf="arrival?.touched && arrival?.invalid"
+          id="username-help"
+          class="p-error"
+          >An airport selection is mandatory</small
+        >
+      </span>
+      <div
+        [ngClass]="
+          arrivalField.value &&
+          filteredAirports.length > 0 &&
+          activeFilter === 'arrival'
+            ? 'airports-selection'
+            : 'hidden'
+        "
+      >
+        <ng-container *ngFor="let airport of filteredAirports; let i = index">
+          <button
+            type="button"
+            #arrivalAir
+            [ngStyle]="{ display: 'block' }"
+            (click)="
+              handleInputSelection(arrivalAir.innerText, 'arrival', 'confirm')
+            "
+            (focus)="
+              handleInputSelection(arrivalAir.innerText, 'arrival', 'update')
+            "
+            [tabIndex]="selectAirport === i ? 0 : -1"
+          >
+            {{ airport.code }} - {{ airport.name }} | {{ airport.city }}
+          </button>
+        </ng-container>
+      </div>
+
+      <div class="dropdown-container">
+        <p-dropdown
+          [autoDisplayFirst]="false"
+          formControlName="people"
+          [options]="airplanesData"
+          #passengers
+          optionLabel="passengers"
+          placeholder="Passengers"
+        ></p-dropdown>
+
+        <p-dropdown
+          [autoDisplayFirst]="false"
+          formControlName="cabin_class"
+          [options]="cabinClasses"
+          placeholder="Class"
+          optionLabel="cabin"
+        ></p-dropdown>
+      </div>
+
+      <button
+        pButton
+        type="submit"
+        label="Calculate Footprint"
+        [disabled]=""
+      ></button>
+    </form>
+
+    <section *ngIf="errorFounded" class="error-message">
+      {{ errorMessage }}
+    </section>
+
+    <section class="loading" *ngIf="showAnim">
+      <div class="loader-container">
+        <img src="../../assets/images/flight animation.png" alt="" />
+        <h5>LOADING...</h5>
+      </div>
+    </section>
+  </div>
+
+  <section class="results" *ngIf="showResults">
+    <img src="../../assets/images/results(1).png" width="120px" alt="" />
+    <div class="airportsRoute">
+      <h3>{{ originCode }}</h3>
+      <span class="pi pi-arrow-right" style="font-size: 1.3rem"></span>
+      <h3>{{ destinationCode }}</h3>
+    </div>
+    <div class="estimation">
+      <p>
+        <strong>{{ footprintOnePassenger | number }}</strong> tons per passenger
+      </p>
+      <p>
+        <strong>{{ footprintTotalPassengers | number }}</strong> tons for
+        {{ passengers.value.passengers }} passengers
+      </p>
+    </div>
+    <app-chart></app-chart>
+  </section>
+</section>
+<hr />
+<app-footer></app-footer>
