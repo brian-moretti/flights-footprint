@@ -13,6 +13,20 @@ a {
   color: inherit;
 }
 
+.website:hover {
+  color: var(--color-orange);
+}
+
+.social img,
+.social i {
+  filter: grayscale(1);
+}
+
+.social img:hover,
+.social i:hover {
+  filter: grayscale(0);
+}
+
 @media only screen and (max-width: 768px) {
   footer {
     flex-direction: column;

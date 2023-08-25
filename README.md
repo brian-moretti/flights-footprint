@@ -8,23 +8,23 @@ Can't wait to try my application. Go here, [Flights Footprint](https://flights-f
 
 ## Flights Footprint - Application
 
-Flights Footprint app, is useful to calculate and have an estimation of the footprint of a flight from/to different airports setting the number of passengers and the cabin class. Is build using the API available at [Goclimate](https://api.goclimate.com/docs) and a cloned airports database [airports.json](https://gist.github.com/tdreyno/4278655)
+Flights Footprint app, is useful to calculate and have an estimation of the footprint of a flight from/to different airports by setting the number of passengers and the cabin class.   Is build using the API available at [Goclimate](https://api.goclimate.com/docs) and a cloned airports database [airports.json](https://gist.github.com/tdreyno/4278655)
 
 ### :computer: Main functionality
 
 - **Form:** The application has a form with 2 Input boxes and 2 Dropdown boxes.
 
   - The Input boxes are used to select the departure airport and the landing airport.
-    - As soon as you starting typing, below the boxes, will appear a window with a list of airports filtered by the keyword typed.
-    - The user can navigate throught the list with the mouse or the keyboard arrow
+    - As soon as you starting typing, below the boxes, will appear a window with a list of airports filtered by the keywords typed.
+    - The user can navigate throught the list with the mouse or the keyboard arrows
   - The Dropdown boxes are used to select the number of passengers (1 to 10) and the cabin class of the flight (Economy, Premium, Business, First)
 
 - **Result:** Once submitted the form will appear an animations of a lasts of 3sec. and then a results section will come into the view with the following data:
-  - The code of the airports (departure / landing)
-  - The amount of CO2e, express in tons, emitted, based on the flight setting, for a single passenger and for the total passengers of the flights.
+  - The IATA code of the Airports (departure / landing)
+  - The amount of CO2e, express in tons, emitted, based on the flight settings, for a single passenger and for the total passengers of the flights.
     - Of course, if has been setting 1 as the n. of passengers the value will be the same
   - A chart with the CO2e emitted
-- **Chart:** The chart give the user the possibility to compare up to 6 different flights footprint routes setted
+- **Chart:** The chart give the user the possibility to compare up to 6 different flights footprint routes
   - The X axis shows the number of flights compared
   - The Y axis shows the amount of CO2e per single passenger
   - The Y1 axis shows the amount of CO2e per total passengers
